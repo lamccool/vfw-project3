@@ -144,13 +144,13 @@ window.addEventListener ("DOMContentLoaded", function(){
 		$('ammount').value = item.ammount[1];
 		var radios = document.forms[0].location;
 		for(var i=0; i<radios.length; i++){
-			if(radios.value == "online" && obj.location[1] == "online"){
+			if(radios.value == "online" && item.location[1] == "online"){
 					radios[i].setAttribute("checked", "checked");
-				} else if (radios[i].value == "store" && obj.location[1] == "store"){
+				} else if (radios[i].value == "store" && item.location[1] == "store"){
 					radios[i].setAttribute("checked", "checked");
 				}
 			}
-		}
+			}
 		$('location').value = item.location[1];
 		$('store').value = item.store[1];
 		$('url').value = item.url[1];
