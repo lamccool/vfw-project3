@@ -112,7 +112,7 @@ window.addEventListener ("DOMContentLoaded", function(){
 		editLink.href = "#";
 		editLink.key = key;
 		var editText ="Edit List";
-		//editLink.addEventListener("click", editItem);
+		editLink.addEventListener("click", editItem);
 		editLink.innerHTML = editText;
 		linksLi.appendChild (editLink);
 		
@@ -129,6 +129,34 @@ window.addEventListener ("DOMContentLoaded", function(){
 		deleteLink.innerHTML = deleteText;
 		linksLi.appendChild (deleteLink);
 	}
+	
+	function editItem (){
+		//grab date from local storage
+		var value = localStorage.getItem(this.key);
+		var item = JSON.parse(value);
+		
+		//show form
+		toggleControls("off");
+		
+		//populate form fields with current local storage values
+		$('category').value = item.category[1];
+		$('comments').value = item.comments[1];
+		$('ammount').value = item.ammount[1];
+		var radios = document.forms[0].location;
+		for(var i=0; i<radios.length; i++){
+			if(radios.value == "online" && obj.location[1] == "online"){
+					radios[i].setAttribute("checked", "checked");
+				} else if (radios[i].value == "store" && obj.location[1] == "store"){
+					radios[i].setAttribute("checked", "checked");
+				}
+			}
+		}
+		$('location').value = item.location[1];
+		$('store').value = item.store[1];
+		$('url').value = item.url[1];
+		$('date').value = item.date[1];
+	}
+	
 	
 	function clearLocal(){
 		if(localStorage.length === 0){
