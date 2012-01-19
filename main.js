@@ -100,21 +100,34 @@ window.addEventListener ("DOMContentLoaded", function(){
 				makeSubli.innerHTML = optSubText;
 				makeSublist.appendChild (linksLi);
 			}
-			makeItemLinks(localStorage.key(i)); //Edit and delete buttons for Local Storage
+			makeItemLinks(localStorage.key(i), linksLi); //Edit and delete buttons for Local Storage
 		}
 	}
 	//Make Item Links Function
 	//Create edit and delete links for each stored item when displayed
 	
-	function makeItemLinks (key){
+	function makeItemLinks (key, linksLi){
 	//add edit single item link
 		var editLink = document.createElement ('a');
-		var editLink.href = "#";
+		editLink.href = "#";
 		editLink.key = key;
 		var editText ="Edit List";
-		editLink.addEventListener("click", editItem);
+		//editLink.addEventListener("click", editItem);
 		editLink.innerHTML = editText;
 		linksLi.appendChild (editLink);
+		
+		//add line break
+		var breakTag = document.createElement('br');
+		linksLi.appendChild(breakTag);
+		
+		//delete single item link
+		var deleteLink = document.createElement('a');
+		deleteLink.href = "#";
+		deleteLink.key = key;
+		var deleteText = "Delete Item"
+		//deleteLink.addEventListener("click", deleteItem);
+		deleteLink.innerHTML = deleteText;
+		linksLi.appendChild (deleteLink);
 	}
 	
 	function clearLocal(){
