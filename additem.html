@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- Laura McCool
+Web App Part 1
+VFW 1201 -->
+<html>
+	<head>
+		<link rel="stylesheet" href="styles.css"/>
+		<meta charset="utf-8"/>
+		<meta name="description" content="Our very first HTML5 document."/>
+		<meta name="keywords" content="html5, mobile development, Full Sail University."/>
+		<meta name="robots" content="index, follow"/>
+		<meta name="robots" content="noindex, nofollow"/>
+		<meta name="viewport" content="user-scalable=no, width=device-width"/>
+		<meta name="viewport" content="target-densitydpi=device-dpi"/>
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320"/>	
+		<title>All I Want For Christmas Is...</title>
+    </head
+    <body>
+     	<header>
+			<hgroup>
+			<h1>Add to your Christmas list:</h1>
+			</hgroup>
+		</header>
+		<form>
+		<form action="#" method="post"> 
+			<fieldset>
+				<legend>About this gift:</legend>
+			    	<label for="category">Gift Category</label>
+			    	<select id="category">
+			    		<option value="Electronics">Electronics</option>
+			    	 	<option value="Movies & Games">Movies & Games</option>
+			    	 	<option value="Clothing/Accessories">Clothing & Accessories</option>
+			    	 	<option value="Music">Music</option>
+			    	 	<option value="Books">Books</option>
+			    	 	<option value="Etc">Etc</option>
+			    	</select>
+			    		<legend>What is it?:</legend>
+				
+				<label for="comments"> Describe the gift:</label><textarea id="comments" placeholder="What is it?"></textarea>
+				<p></p>
+				<legend>Quantity:</legend>
+				<input type="range" id='amount'name="amount" min="1" max="100" />
+			    <p></p>
+			    <legend>Where to buy it:</legend>
+					<input type="radio" checked value="Online" id="online" name="location" /><label for="online">Online</label></li>
+					<input type="radio" value="In a store." id="store" name="location" /><label for="store">In a store.</label></li>
+				<p></p>
+				<li><label for="store">Store Name:</label><input type="text" id="store" placeholder="ex: Zappos.com, Best Buy" /></li>
+				<li><label for="url">Product URL (if applicable):</label><input type="url" id="url" /></li>
+				<p></p>
+				<legend>Date Added:</legend> <input type="date" id="date" name="user_date" />
+			 </fieldset>
+			 <input type="submit" value="Add it to the list!" id="submit"/>
+		</form>
+		<nav>
+			<a href="#" id="clear">Clear Stored Data</a>
+			<a href="#" id="displayData">Display Data</a>
+			<a href="additem.html" id="addNew" style="display:none;">Add New Item</a>
+			<form action="#" method="post" id="contactForm" />
+		<script src="main.js" type="text/javascript"></script>	
+	</body>
+	
+</html>
