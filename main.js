@@ -38,13 +38,13 @@ window.addEventListener ("DOMContentLoaded", function(){
 	function toggleControls(n){
 		switch(n){
 			case "on":
-				$('contactForm').style.display ="none";
+				$('giftForm').style.display ="none";
 				$('clear').style.display ="inline";
 				$('displayData').style.display ="none";
 				$('addNew').style.display = "inline";
 				break;
 			case "off":
-				$('contactForm').style.display ="block";
+				$('giftForm').style.display ="block";
 				$('clear').style.display ="inline";
 				$('displayData').style.display ="inline";
 				$('addNew').style.display = "none";
@@ -82,7 +82,7 @@ window.addEventListener ("DOMContentLoaded", function(){
 		var makeList = document.createElement('ul');
 		makeDiv.appendChild(makeList);
 		document.body.appendChild(makeDiv);
-		$('items').style.display = "display";
+		$('items').style.display = "block";
 		for(var i=0, len=localStorage.length; i<len;i++){
 			var makeli = document.createElement('li');
 			makeList.appendChild(makeli);
