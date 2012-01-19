@@ -1,4 +1,4 @@
-//Project 2
+//Project 3
 //Visual Frameworks 1201
 //Mobile Media Development
 //Full Sail University
@@ -85,6 +85,7 @@ window.addEventListener ("DOMContentLoaded", function(){
 		$('items').style.display = "block";
 		for(var i=0, len=localStorage.length; i<len;i++){
 			var makeli = document.createElement('li');
+			var linksLi = document.createElement ('li');
 			makeList.appendChild(makeli);
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
@@ -97,8 +98,23 @@ window.addEventListener ("DOMContentLoaded", function(){
 				makeSubList.appendChild(makeSubli);
 				var optSubText = obj[n][0]+" "+obj[n][1];
 				makeSubli.innerHTML = optSubText;
-			}			
+				makeSublist.appendChild (linksLi);
+			}
+			makeItemLinks(localStorage.key(i)); //Edit and delete buttons for Local Storage
 		}
+	}
+	//Make Item Links Function
+	//Create edit and delete links for each stored item when displayed
+	
+	function makeItemLinks (key){
+	//add edit single item link
+		var editLink = document.createElement ('a');
+		var editLink.href = "#";
+		editLink.key = key;
+		var editText ="Edit List";
+		editLink.addEventListener("click", editItem);
+		editLink.innerHTML = editText;
+		linksLi.appendChild (editLink);
 	}
 	
 	function clearLocal(){
