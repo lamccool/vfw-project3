@@ -78,13 +78,16 @@ window.addEventListener ("DOMContentLoaded", function(){
 			item.date	 	 	= ["Date Added:", $('date').value];
 		
 		//Save Data in localStorage: Use Stringify to convert our object to a string.
-		localStorage.setItem(id,JSON.stringify(item));
+		localStorage.setItem(id, JSON.stringify(item));
 		alert("Item Added!");
 	}
 
 	function getData(){
 		toggleControls("on");
 		//write data from local storage to browser.
+		if(localStorage.length === 0){
+			alert("There is no data in Local Storage.");
+		}
 		var makeDiv = document.createElement('div');
 		makeDiv.setAttribute("id", "items");
 		var makeList = document.createElement('ul');
@@ -174,6 +177,17 @@ window.addEventListener ("DOMContentLoaded", function(){
 		editSubmit.key = this.key;		
 	}
 	
+	function deleteItem(){
+		var ask = confirm("Are you sure you want to delete this item?")
+		if (ask){
+			localStorage.removeItem(this.key);
+			alert("Item was deleted.");
+			window.location.reload();
+		}else{
+			alert("Item was NOT deleted.")
+		}
+	}
+	
 	function clearLocal(){
 		if(localStorage.length === 0){
 			alert("There is no data to clear.")
@@ -189,7 +203,6 @@ window.addEventListener ("DOMContentLoaded", function(){
 		//define elements we want to check
 		var getCategory = $('category');
 		var getComments = $('comments');
-		var getAmmount = $('ammount');
 		
 		//Reset Error Message
 		errMsg.innerHTML ="";
@@ -211,12 +224,6 @@ window.addEventListener ("DOMContentLoaded", function(){
 			var commentsError = "Please include your item.";
 			getComments.style.border = "1px solid red";
 			messageAry.push(commentsError);
-		}
-		//Ammount value
-		if (getAmmount.value === "0"){
-			var ammountError = "Please choose an ammount.";
-			getAmmount.style.border = "1px solid red";
-			messageAry.push(ammountError);
 		}
 		
 		//If there were errors display them on the screen
