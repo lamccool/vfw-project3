@@ -58,7 +58,7 @@ window.addEventListener ("DOMContentLoaded", function(){
 	function storeData(key){
 	// If there is no key this means this is a brand new item and we need a new key
 		if (!key){
-				var id 				= Math.floor(Math.random()*100000001);
+			var id 				= Math.floor(Math.random()*100000001);
 		}else{
 			//set the id to the exisiting key we're editing so that it will save over the data.
 			//the key is teh same key that's been passed along from the editSubmit event handler
@@ -213,7 +213,7 @@ window.addEventListener ("DOMContentLoaded", function(){
 		//Get Error Messages
 		var messageAry = [];
 		//Category Validation
-		if (getCategory.value === "--Choose A Category--"){
+		if (getCategory.value === "--Choose A Gift Category--"){
 			var categoryError = "Please choose a category.";
 			getCategory.style.border = "1px solid red";
 			messageAry.push(categoryError);
@@ -228,8 +228,8 @@ window.addEventListener ("DOMContentLoaded", function(){
 		
 		//If there were errors display them on the screen
 		if(messageAry.length >= 1){
-			for(var i=0, j=messageAry.length; i<j; i++){
-				var txt = document.createElement ('li');
+			for(var i=0, j=messageAry.length; i < j; i++){
+				var txt = document.createElement('li');
 				txt.innerHTML = messageAry[i];
 				errMsg.appendChild(txt);
 			}	
