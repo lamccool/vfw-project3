@@ -149,14 +149,12 @@ window.addEventListener ("DOMContentLoaded", function(){
 				} else if (radios[i].value == "store" && item.location[1] == "store"){
 					radios[i].setAttribute("checked", "checked");
 				}
-			}
-			}
+		}
 		$('location').value = item.location[1];
 		$('store').value = item.store[1];
 		$('url').value = item.url[1];
 		$('date').value = item.date[1];
 	}
-	
 	
 	function clearLocal(){
 		if(localStorage.length === 0){
@@ -165,7 +163,7 @@ window.addEventListener ("DOMContentLoaded", function(){
 			localStorage.clear();
 			alert("All items are deleted.");
 			window.location.reload();
-			return false;		
+			return false;	
 		}
 	}
 	
