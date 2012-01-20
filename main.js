@@ -154,6 +154,16 @@ window.addEventListener ("DOMContentLoaded", function(){
 		$('store').value = item.store[1];
 		$('url').value = item.url[1];
 		$('date').value = item.date[1];
+		
+		//remove the initial listener from input 'save contact' button
+		save.removeEventListener ("click", storeData);
+		//Change submit button value to say edit button
+		$('submit').value = "Edit List";
+		var editSubmit = $('submit');
+		//save the key value established in this function as a property of the editSubmit event
+		//so we can use that value when we save the date we edited 
+		editSubmit.addEventListener("click", validate);
+		editSubmit.key = this.key;		
 	}
 	
 	function clearLocal(){
@@ -167,6 +177,37 @@ window.addEventListener ("DOMContentLoaded", function(){
 		}
 	}
 	
+	function validate(){
+		//define elements we want to check
+		var getCategory = $('category');
+		var getComments = $('comments');
+		var getAmmount = $('ammount');
+		
+		//Get Error Messages
+		var messageAry = [];
+		//Category Validation
+		if (getCategory.value === "--Choose A Category--"){
+			var categoryError = "Please choose a category.";
+			getCategory.style.border = "1px solid red";
+			messageAry.push(categoryError);
+		}
+		
+		//Comments validation
+		if (getComments.value === ""){
+			var commentsError = "Please include your item.";
+			getComments.style.border = "1px solid red";
+			messageAry.push(commentsError);
+		}
+		//Ammount value
+		if (getAmmount.value === "0", 0){
+			var ammountError = "Please choose an ammount.";
+			getAmmount.style.border = "1px solid red";
+			messageAry.push(ammountError);
+		}
+		
+		
+	}
+	
 	//var defaults
 	var giftCategory = ["--Choose A Gift Category--", "Electronics", "Movies & Games", "Clothing & Accessories", "Music", "Books", "Etc"],
 		locationValue
@@ -178,6 +219,6 @@ window.addEventListener ("DOMContentLoaded", function(){
 	var clearData =$('clear');
 	clearData.addEventListener("click", clearLocal);
 	var save = $('submit');
-	save.addEventListener("click", storeData);
+	save.addEventListener("click", validate);
 
 });
