@@ -55,8 +55,16 @@ window.addEventListener ("DOMContentLoaded", function(){
 		}
 	}
 	
-	function storeData(){
-		var id 				= Math.floor(Math.random()*100000001);
+	function storeData(key){
+	// If there is no key this means this is a brand new item and we need a new key
+		if (!key){
+				var id 				= Math.floor(Math.random()*100000001);
+		}else{
+			//set the id to the exisiting key we're editing so that it will save over the data.
+			//the key is teh same key that's been passed along from the editSubmit event handler
+			//to validate function and then passed here into the storeData function
+			id = key;
+		}
 		//Gather up all our form field values and store in an object
 		//Object properties contain array with the form label and input value.
 		getSelectedRadio();
@@ -98,7 +106,7 @@ window.addEventListener ("DOMContentLoaded", function(){
 				makeSubList.appendChild(makeSubli);
 				var optSubText = obj[n][0]+" "+obj[n][1];
 				makeSubli.innerHTML = optSubText;
-				makeSublist.appendChild (linksLi);
+				makeSubli.appendChild (linksLi);
 			}
 			makeItemLinks(localStorage.key(i), linksLi); //Edit and delete buttons for Local Storage
 		}
@@ -125,7 +133,7 @@ window.addEventListener ("DOMContentLoaded", function(){
 		deleteLink.href = "#";
 		deleteLink.key = key;
 		var deleteText = "Delete Item"
-		//deleteLink.addEventListener("click", deleteItem);
+		deleteLink.addEventListener("click", deleteItem);
 		deleteLink.innerHTML = deleteText;
 		linksLi.appendChild (deleteLink);
 	}
@@ -177,11 +185,17 @@ window.addEventListener ("DOMContentLoaded", function(){
 		}
 	}
 	
-	function validate(){
+	function validate(e){
 		//define elements we want to check
 		var getCategory = $('category');
 		var getComments = $('comments');
 		var getAmmount = $('ammount');
+		
+		//Reset Error Message
+		errMsg.innerHTML ="";
+		getCategory.style.border = "1px solid black";
+		getComments.style.border = "1px solid black";
+		getAmmount.style.border = "1px solid black";
 		
 		//Get Error Messages
 		var messageAry = [];
@@ -199,18 +213,33 @@ window.addEventListener ("DOMContentLoaded", function(){
 			messageAry.push(commentsError);
 		}
 		//Ammount value
-		if (getAmmount.value === "0", 0){
+		if (getAmmount.value === "0"){
 			var ammountError = "Please choose an ammount.";
 			getAmmount.style.border = "1px solid red";
 			messageAry.push(ammountError);
 		}
 		
-		
+		//If there were errors display them on the screen
+		if(messageAry.length >= 1){
+			for(var i=0, j=messageAry.length; i<j; i++){
+				var txt = document.createElement ('li');
+				txt.innerHTML = messageAry[i];
+				errMsg.appendChild(txt);
+			}	
+			e.preventDefault();
+			return false;	
+		}else {
+			//If all is well save our data. send the key value (which came from editData function
+			//remember this key value was passed thru the editSubmit event listener as a property
+			storeData(this.key);
+		}
+
 	}
 	
 	//var defaults
 	var giftCategory = ["--Choose A Gift Category--", "Electronics", "Movies & Games", "Clothing & Accessories", "Music", "Books", "Etc"],
 		locationValue
+		errMsg = $('errors');
 	;
 	makeCats();
 	//set link and click events
